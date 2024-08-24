@@ -1,0 +1,47 @@
+//
+//  MessageItem.swift
+//  WhatsappClone
+//
+//  Created by qwerty on 8/23/24.
+//
+
+import Foundation
+import SwiftUI
+
+struct MessageItem: Identifiable {
+    let id = UUID().uuidString
+    let text: String
+    let type: MessageType
+    let direction: MessageDirection
+    
+    static let sentPlaceHolder = MessageItem(text: "Holy Spagetti", type: .text, direction: .sent)
+    static let receivedPlaceHolder = MessageItem(text: "Holy Spagetti", type: .text, direction: .received)
+    
+    var alignment: Alignment {
+        return direction == .received ? .leading : .trailing
+    }
+    
+    var horizontalAlignment: HorizontalAlignment{
+        return direction == .received ? .leading : .trailing
+    }
+    
+    var backgroundColor: Color {
+        return direction == .sent ? .bubbleGreen : .bubbleWhite
+    }
+    
+    static let stubMessages: [MessageItem] = [
+        MessageItem(text: "Hi There", type: .text, direction: .sent),
+        MessageItem(text: "Check out this Photo", type: .photo, direction: .received),
+        MessageItem(text: "Play out this video", type: .video, direction: .received)
+    ]
+}
+enum MessageType{
+    case text,photo,video
+}
+enum MessageDirection {
+    case sent,received
+    
+    static var random: MessageDirection {
+        return [MessageDirection.sent, .received].randomElement() ?? .sent
+    }
+}
