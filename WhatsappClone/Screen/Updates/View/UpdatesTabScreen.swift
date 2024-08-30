@@ -13,7 +13,7 @@ struct UpdatesTabScreen: View {
         NavigationStack{
             List{
                 StatusSectionHeader()
-                    .listRowBackground(Color.clear)
+                    .listRowBackground(Color.clear)//List bölümün arka planın rengini kaldırır
                 //------------
                 StatusSection()
                 //------------
@@ -25,12 +25,14 @@ struct UpdatesTabScreen: View {
                 //------------
                 Section{
                     ChannelListView()
+                    
                 }header: {
                     channelSectionHeader()
                 }
                 
                 //------------
             }.listStyle(.grouped)
+                
                 .navigationTitle("Updates")
                 .searchable(text: $searchText)
         }

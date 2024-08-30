@@ -17,6 +17,11 @@ struct BubbleImageView: View {
                 if item.direction == .sent { shareButton() }
                 
                 messageTextView()
+                    .shadow(color: Color(.systemGray3).opacity(0.1),radius: 5, x: 0, y: 20)
+                    .overlay{
+                        playButton()
+                            .opacity(item.type == .video ? 1 : 0)
+                    }
                 
                 if item.direction == .received { shareButton() }
             }
@@ -27,21 +32,15 @@ struct BubbleImageView: View {
     
     private func messageTextView() -> some View{
         VStack(alignment: .leading,spacing: 0){
-            Image(systemName: "photo.fill")
+            Image(.stubImage0)
                 .resizable()
-                .scaledToFit()
+                .scaledToFill()
                 .frame(width: 220,height: 180)
                 .clipShape(
                     RoundedRectangle(cornerRadius: 10,style: .continuous)
                 )
-                .background{
-                    RoundedRectangle(cornerRadius: 10,style: .continuous)
-                        .fill(Color(.systemGray5))
-                }
-                .overlay{
-                    RoundedRectangle(cornerRadius: 10,style: .continuous)
-                        .stroke(Color(.systemGray5))
-                }
+                .background{ RoundedRectangle(cornerRadius: 10,style: .continuous).fill(Color(.systemGray5)) }
+                .overlay{ RoundedRectangle(cornerRadius: 10,style: .continuous).stroke(Color(.systemGray5)) }
                 .padding(5)
                 .overlay(alignment: .bottomTrailing) {
                     timeStampTextView()
@@ -70,6 +69,20 @@ struct BubbleImageView: View {
                     .frame(width: 15,height: 15)
             }
         }
+        .padding(.vertical,2.5)
+        .padding(.horizontal)
+        .background(Color(.systemGray4))
+        .clipShape(RoundedRectangle(cornerRadius: 10,style: .continuous))
+        .padding(9)
+    }
+    
+    private func playButton() -> some View{
+        Image(systemName: "play.fill")
+            .padding()
+            .imageScale(.large)
+            .foregroundColor(.gray)
+            .background(.thinMaterial)
+            .clipShape(Circle())
     }
     
     private func shareButton() -> some View {
