@@ -38,5 +38,5 @@ struct SettingsItemView: View {
 }
 
 #Preview {
-    SettingsItemView(item: .chats)
+    SettingsItemView(item: .avatar)
 }

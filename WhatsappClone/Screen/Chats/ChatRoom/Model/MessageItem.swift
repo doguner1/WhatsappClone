@@ -15,7 +15,7 @@ struct MessageItem: Identifiable {
     let direction: MessageDirection
     
     static let sentPlaceHolder = MessageItem(text: "Holy Spagetti", type: .text, direction: .sent)
-    static let receivedPlaceHolder = MessageItem(text: "Holy Spagetti", type: .text, direction: .received)
+    static let receivedPlaceHolder = MessageItem(text: "Spagetti", type: .text, direction: .received)
     
     var alignment: Alignment {
         return direction == .received ? .leading : .trailing
@@ -32,11 +32,12 @@ struct MessageItem: Identifiable {
     static let stubMessages: [MessageItem] = [
         MessageItem(text: "Hi There", type: .text, direction: .sent),
         MessageItem(text: "Check out this Photo", type: .photo, direction: .received),
-        MessageItem(text: "Play out this video", type: .video, direction: .received)
+        MessageItem(text: "Play out this video", type: .video, direction: .received),
+        MessageItem(text: "Listen to this aot audio", type: .audio, direction: .received)
     ]
 }
 enum MessageType{
-    case text,photo,video
+    case text,photo,video, audio
 }
 enum MessageDirection {
     case sent,received
